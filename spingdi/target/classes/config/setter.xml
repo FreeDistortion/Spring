@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="dao" class="basic.setter.MemberDAO"></bean>
+
+	<!-- <constructor-arg> element가 정의되지 않으면 무조건 default constructor가 생성된다. -->
+	<bean id="insa" class="basic.setter.InsaImpl">
+		<!-- property element의 name 속성은 setter method의 set을 제외한 문자열의 첫 글자를 소문자로 
+			바꾼 것. -->
+		<property name="dao" ref="dao"></property>
+	</bean>
+
+	<bean id="logic" class="di.setter01.LogicImpl" />
+	<bean id="service" class="di.setter01.MyServiceImpl">
+		<property name="name" value="name"></property>
+		<property name="msg" value="message"></property>
+		<property name="logic" ref="logic"></property>
+
+	</bean>
+
+	<bean id="dice" class="di.setter02.Dice"></bean>
+	<bean id="player" class="di.setter02.Player">
+		<property name="d" ref="dice"></property>
+	</bean>
+	
+
+	<bean id="foutputter"
+		class="di.setter03.FileOutputter"></bean>
+	<bean id="conoutputter"
+		class="di.setter03.ConsoleOutputter"></bean>
+	<bean id="imsg" class="di.setter03.MessageBean">
+		<property name="name" value="name"></property>
+		<property name="greeting" value="greeting"></property>
+		<property name="outputter" ref="foutputter"></property>
+	</bean>
+
+</beans>
