@@ -24,6 +24,9 @@
 	<h2>
 		<a href="/springmvc/springjdbc/test">Emp table 개수 조회</a>
 	</h2>
-
+	<h2>
+		<a href="/springmvc/springjdbc/getJobs">Jobs table 개수 조회</a>
+	</h2>
+	
 </body>
 </html>

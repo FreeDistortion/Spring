@@ -10,6 +10,12 @@ public class IndexController {
 		return "main/index";
 	}
 	
+	@RequestMapping("/index")
+	public String tiles_index() {
+		System.out.println("tiles를 활용한 view 생성");
+		return "index";//controller에서 return하는 view name은 tiles properties file에 등록한 <definition> element의 name 속성에 정의된 내용.
+	}
+	
 	public IndexController() {
 		
 	}
