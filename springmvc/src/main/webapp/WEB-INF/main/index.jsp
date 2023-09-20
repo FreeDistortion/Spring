@@ -18,8 +18,11 @@
 	<h2>
 		<a href="/springmvc/showview">Parameter Export Test</a>
 	</h2>
-<h2>
+	<h2>
 		<a href="/springmvc/showform">PostForm</a>
+	</h2>
+	<h2>
+		<a href="/springmvc/springjdbc/test">Emp table 개수 조회</a>
 	</h2>
 
 </body>

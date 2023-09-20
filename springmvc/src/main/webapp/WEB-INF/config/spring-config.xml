@@ -30,5 +30,23 @@
 		base-package="com.playdata.springmvc" />
 	<context:component-scan base-package="main"></context:component-scan>
 	<context:component-scan base-package="test"></context:component-scan>
+	<context:component-scan base-package="springjdbc"></context:component-scan>
+	
+	
+	<!-- Libraries for link Spring JDBC  -->
+	<!-- jdbc에서 DriverManager 방식으로 Connection을 생성해서 관리(요청이 들어오면 Connection을 생성해서 넘겨주는 방식). -->
+	<beans:bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></beans:property>
+		<beans:property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"></beans:property>
+		<beans:property name="username" value="scott"></beans:property>
+		<beans:property name="password" value="tiger"></beans:property>
+		
+	</beans:bean>
+	
+	
+	<!-- SQL을 실행할 수 있는 기능을 제공하는 class -->
+	<beans:bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
+		<beans:constructor-arg ref="ds"></beans:constructor-arg>
+	</beans:bean>
 	
 </beans:beans>

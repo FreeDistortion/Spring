@@ -21,7 +21,18 @@ else -> c:otherwise
 	</c:otherwise>
 </c:choose>
 
-<!-- grade A: <h3>A등급 -->
+<h2>Controller가 공유해준 data check(공유객체가 null인지)</h2>
+<hr>
+<c:choose>
+	<c:when test="${user==null }">
+		<h3>user is null.</h3>
+	</c:when>
+	<c:otherwise>
+		<h3>user is not null.</h3>
+	</c:otherwise>
+</c:choose>
+<hr>
+
 <c:choose>
 	<c:when test="${param.grade=='A'||param.grade=='a'}">
 		<h3>A등급</h3>
