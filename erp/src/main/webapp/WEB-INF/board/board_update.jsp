@@ -6,7 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 
 <link href="/springmvc/common/css/font-awesome.css" rel="stylesheet" />
+ -->
 <!-- Custom styles for this template -->
 
 <link rel="stylesheet"
@@ -17,14 +19,13 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <script type="text/javascript">
-	$(document).ready(function(){
+	$(document).ready(function() {
 		data = "${board.category}"
-		$("#category").val(data).attr("selected","selected");
+		$("#category").val(data).attr("selected", "selected");
 	});
-
 </script>
 <body>
-	
+
 	<h4>
 		<i class="fa fa-angle-right"></i> 게시글 수정하기
 	</h4>
@@ -33,8 +34,8 @@
 		<div class="col-lg-12">
 			<div class="form-panel">
 
-				<form class="form-horizontal style-form"
-				 action="/springmvc/board/update.do"  method="post">
+				<form class="form-horizontal style-form" action="/erp/board/update"
+					method="post">
 					<div class="form-group">
 						<div class="col-md-2 text-right">
 							<label for="id" class="control-label">번호</label>
@@ -58,16 +59,15 @@
 						<label class="col-sm-2 col-sm-2 control-label">작성자</label>
 						<div class="col-sm-10">
 
-							<p class="form-control-static">
-								${board.id}
-							</p>
+							<p class="form-control-static">${board.id}</p>
 						</div>
-					
+
 						<div class="form-group">
 							<label class="col-sm-2 col-sm-2 control-label">제목</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="title" value="${board.title }"> <span
-									class="help-block">게시글 유형에 맞는 내용으로 작성 부탁드립니다. </span>
+								<input type="text" class="form-control" name="title"
+									value="${board.title }"> <span class="help-block">게시글
+									유형에 맞는 내용으로 작성 부탁드립니다. </span>
 							</div>
 						</div>
 						<div class="form-group">

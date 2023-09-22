@@ -52,4 +52,18 @@
 		<beans:property name="order" value="1"></beans:property>
 	</beans:bean>
 		
+		
+		
+		
+	<!-- ================= porperties for using MyBatis ================= -->
+	<!-- MyBatis 내부에서 DataSource를 통해 connection을 획득하고 관리하는 객체 -->
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="ds"></beans:property>
+		<beans:property name="configLocation" value="/WEB-INF/config/mybatis-config.xml"></beans:property>
+	</beans:bean>
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">	
+		<beans:constructor-arg ref="sqlSessionFactory"></beans:constructor-arg>
+	</beans:bean>
+	
+	
 </beans:beans>
