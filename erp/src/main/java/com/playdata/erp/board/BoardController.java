@@ -72,9 +72,9 @@ public class BoardController {
 	}
 	
 	@PostMapping("/board/search")
-	public ModelAndView search(String tag, String data) {
+	public ModelAndView search(String data) {
 		ModelAndView mav=new ModelAndView("board/search");
-		List<BoardDTO> list=service.search(tag, data);
+		List<BoardDTO> list=service.search(data);
 		mav.addObject("boardlist", list);
 		return mav;
 	}

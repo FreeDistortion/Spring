@@ -58,13 +58,13 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public List<BoardDTO> search(String data) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSessionTemplate.selectList("com.playdata.erp.board.select", data);
 	}
 
 	@Override
 	public List<BoardDTO> search(String tag, String data) {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectList("com.playdata.erp.board.select", data);
+		return null;
 	}
 
 	@Override

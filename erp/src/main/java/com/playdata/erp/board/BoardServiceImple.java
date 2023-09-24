@@ -54,16 +54,13 @@ public class BoardServiceImple implements BoardService {
 	@Override
 	public List<BoardDTO> search(String data) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.search(data);
 	}
 
 	@Override
 	public List<BoardDTO> search(String tag, String data) {
 		// TODO Auto-generated method stub
-		List<BoardDTO> list = null;
-		list=dao.search(tag, data);
-		
-		return list;
+		return null;
 	}
 
 	// 전체 게시글 조회와 category별 조회를 하나의 service method에서 처리.
