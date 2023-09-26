@@ -12,7 +12,8 @@ import org.springframework.stereotype.Repository;
 public class DeptDAOImpl implements DeptDAO {
 
 	JdbcTemplate template;
-
+	
+	
 	public DeptDAOImpl() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -27,7 +28,7 @@ public class DeptDAOImpl implements DeptDAO {
 	@Override
 	public List<DeptDTO> getDeptName() {
 		// TODO Auto-generated method stub
-		return null;
+		return template.query("SELECT * FROM DEPT", new DeptRowMapper());
 	}
 
 	@Override

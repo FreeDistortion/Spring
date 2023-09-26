@@ -1,17 +1,19 @@
 package com.playdata.erp.board;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BoardDAOImpl implements BoardDAO{
+public class BoardDAOImpl implements BoardDAO {
 
-	//MyBatis 핵심 class를 이용해 SQL command 살행
+	// MyBatis 핵심 class를 이용해 SQL command 살행
 	SqlSession sqlSessionTemplate;
-	
+
 	@Autowired
 	public BoardDAOImpl(SqlSession sqlSessionTemplate) {
 		super();
@@ -26,8 +28,9 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public int insert(BoardDTO board) {
 		// TODO Auto-generated method stub
-		// MyBatis의 insert method 내부에서 BoardDTO object의 getter method를 call 후 data를 꺼내서 같은 이름의 parameter 자리에 mapping 
-		return sqlSessionTemplate.insert("com.playdata.erp.board.insert",board);
+		// MyBatis의 insert method 내부에서 BoardDTO object의 getter method를 call 후 data를 꺼내서
+		// 같은 이름의 parameter 자리에 mapping
+		return sqlSessionTemplate.insert("com.playdata.erp.board.insert", board);
 	}
 
 	@Override
@@ -58,13 +61,19 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public List<BoardDTO> search(String data) {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectList("com.playdata.erp.board.select", data);
+		data = "%" + data + "%";
+		System.out.println(data);
+		return sqlSessionTemplate.selectList("com.playdata.erp.board.search", data);
 	}
 
 	@Override
 	public List<BoardDTO> search(String tag, String data) {
 		// TODO Auto-generated method stub
-		return null;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("tag", tag);
+		map.put("data", data);
+		List<BoardDTO> list = sqlSessionTemplate.selectList("com.playdata.erp.board.dynamicSearch", map);
+		return list;
 	}
 
 	@Override
@@ -72,5 +81,23 @@ public class BoardDAOImpl implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectList("com.playdata.erp.board.categorySelect", category);
 	}
-	
+
+	@Override
+	public int insertFile(List<BoardFileDTO> boardfiledtolist) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.insert("com.playdata.erp.board.fileinsert", boardfiledtolist);
+	}
+
+	@Override
+	public List<BoardFileDTO> getFileList(String boardno) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList("com.playdata.erp.board.fileselect", boardno);
+	}
+
+	@Override
+	public BoardFileDTO getFile(BoardFileDTO inputdata) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

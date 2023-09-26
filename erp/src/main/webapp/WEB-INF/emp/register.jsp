@@ -16,7 +16,7 @@
 <body>
 	<div class="container-fluid">
 
-		<form class="form-horizontal" action="/erp/emp/insert.do"
+		<form class="form-horizontal" action="/erp/emp/insert"
 			method="POST" name="myform">
 			<fieldset>
 				<div id="legend"></div>
@@ -37,6 +37,9 @@
 					<label class="control-label col-sm-2" for="orgcode">부서코드</label>
 					<div class="col-sm-3">
 						<select name="deptno" class="form-control">
+							<c:forEach var="dept" items="${deptlist }">
+								<option value="${dept.deptname }">${dept.deptno }</option>
+							</c:forEach>
 						</select>
 					</div>
 				</div>

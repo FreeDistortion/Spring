@@ -27,7 +27,7 @@ public class DeptServiceImpl implements DeptService {
 	@Override
 	public List<DeptDTO> getDeptName() {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.getDeptName();
 	}
 
 	@Override

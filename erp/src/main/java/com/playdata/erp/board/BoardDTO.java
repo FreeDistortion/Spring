@@ -1,6 +1,9 @@
 package com.playdata.erp.board;
 
 import java.sql.Date;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class BoardDTO {
 	private String board_no;
@@ -9,6 +12,9 @@ public class BoardDTO {
 	private String title;
 	private String content;
 	private String category;
+	// client가 전송하는 binary data를 Spring MVC 내부에서 array or list로 관리.
+	private List<MultipartFile> files; 
+	
 	public BoardDTO() {
 //		System.out.println("*************************Default Constructor of BoardDTO*************************");
 		// TODO Auto-generated constructor stub
@@ -22,10 +28,28 @@ public class BoardDTO {
 		this.content = content;
 		this.category = category;
 	}
+	
+	public List<MultipartFile> getFiles() {
+		return files;
+	}
+	public void setFiles(List<MultipartFile> files) {
+		this.files = files;
+	}
+	public BoardDTO(String board_no, String id, Date write_date, String title, String content, String category,
+			List<MultipartFile> files) {
+		super();
+		this.board_no = board_no;
+		this.id = id;
+		this.write_date = write_date;
+		this.title = title;
+		this.content = content;
+		this.category = category;
+		this.files = files;
+	}
 	@Override
 	public String toString() {
 		return "BoardDTO [board_no=" + board_no + ", id=" + id + ", write_date=" + write_date + ", title=" + title
-				+ ", content=" + content + ", category=" + category + "]";
+				+ ", content=" + content + ", category=" + category + ", files=" + files + "]";
 	}
 	public String getBoard_no() {
 //		System.out.println("*************************get method*************************");

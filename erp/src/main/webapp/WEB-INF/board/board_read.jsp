@@ -34,10 +34,12 @@
 			</div>
 			<div class="col-md-8"></div>
 		</div>
+		
 		<div class="form-group">
 			<div class="col-md-2 text-right">
 				<label for="id" class="control-label">게시글종류</label>
 			</div>
+			
 			<div class="col-md-3">
 				<select name="category" class="form-control" id="category">
 					<option value="경조사">경조사</option>
@@ -46,24 +48,40 @@
 				</select>
 			</div>
 		</div>
+		
 		<div class="form-group">
 			<div class="col-md-2 text-right">
 				<label for="id" class="control-label">작성자</label>
 			</div>
 			<div class="col-md-8">${board.id }</div>
 		</div>
+		
 		<div class="form-group">
 			<div class="col-md-2 text-right">
 				<label for="title" class="control-label">제목</label>
 			</div>
 			<div class="col-md-8">${board.title }</div>
 		</div>
+		
+		<div class="form-group">
+			<div class="col-md-2 text-right">
+				<label for="title" class="control-label">첨부파일</label>
+			</div>
+			<div class="col-md-8">
+				<c:forEach var="boardFileDTO" items="${boardFileDTOList }">
+					<a href="#">${boardFileDTO.originalFilename }</a>
+					<img alt="" src="/erp/upload/${boardFileDTO.storeFilename }" width="300"/>
+				</c:forEach>
+			</div>
+		</div>
+		
 		<div class="form-group">
 			<div class="col-md-2 text-right">
 				<label for="title" class="control-label">작성날짜</label>
 			</div>
 			<div class="col-md-8">${board.write_date }</div>
 		</div>
+		
 		<div class="form-group">
 			<div class="col-md-2 text-right">
 				<label for="text" class="control-label">내용</label>
@@ -83,7 +101,8 @@
 					<i class="fa fa-fw fa-close"></i> 목록
 				</button>
 				<button type="button" class="btn btn-danger btn-lg"
-					onclick="location.href='/erp/board/delete?board_no=${board.board_no}'" id="deletebtn">
+					onclick="location.href='/erp/board/delete?board_no=${board.board_no}'"
+					id="deletebtn">
 					<i class="fa fa-fw fa-close"></i> 삭제
 				</button>
 			</div>

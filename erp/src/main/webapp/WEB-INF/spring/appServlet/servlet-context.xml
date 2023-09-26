@@ -16,6 +16,7 @@
 	<resources mapping="/images/**" location="/WEB-INF/static/images/" />
 	<resources location="/WEB-INF/static/common/css/" mapping="/common/css/**"></resources>
 	<resources location="/WEB-INF/static/common/js/" mapping="/common/js/**"></resources>
+	<resources location="/WEB-INF/upload/" mapping="/upload/**"></resources>
 	
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
@@ -28,13 +29,33 @@
 	<context:component-scan base-package="com.playdata.erp" />
 	<context:component-scan base-package="controllers"></context:component-scan>
 	
+	
+	<!-- 
 	<beans:bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></beans:property>
-		<beans:property name="url" value="jdbc:oracle:thin:@192.168.0.23:1521:xe"></beans:property>
+		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></beans:property>
 		<beans:property name="username" value="erp"></beans:property>
 		<beans:property name="password" value="erp"></beans:property>
-		
 	</beans:bean>
+	 -->
+	 
+	 <!-- !!!!!!!!!!!!!!!!!!!!!!!! connection pool: 히카리cp !!!!!!!!!!!!!!!!!!!!!!!! -->
+	<beans:bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<beans:property name="jdbcUrl" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
+		<beans:property name="username" value="erp"/>
+		<beans:property name="password" value="erp"/>
+		<!-- 
+		<beans:property name="maximumPoolSize" value="20"/>
+		 -->
+	</beans:bean>
+	<beans:bean id="ds" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<beans:constructor-arg ref="hikariConfig"/>
+	</beans:bean>
+
+	
+	
+	
 	<beans:bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
 		<beans:constructor-arg ref="ds"></beans:constructor-arg>
 	</beans:bean>
@@ -63,6 +84,11 @@
 	</beans:bean>
 	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">	
 		<beans:constructor-arg ref="sqlSessionFactory"></beans:constructor-arg>
+	</beans:bean>
+	
+	<!-- ================= file upload를 위한 설정 ================= -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="40000000"></beans:property>
 	</beans:bean>
 	
 	
